@@ -86,7 +86,7 @@ function calc_ss2mean_rm(sd, diff, r, base, rho, alpha, power, drop) {
 }
 
 // SS2Prop
-function calc_ss2prop(sel, p0, p1, m, alpha, power, drop) {
+function calc_ss2prop(p0, p1, m, alpha, power, drop) {
     var p_bar = (p0 + p1) / 2;
     var z_alpha = jStat.normal.inv(1 - alpha / 2, 0, 1);
     var z_beta = jStat.normal.inv(power, 0, 1);

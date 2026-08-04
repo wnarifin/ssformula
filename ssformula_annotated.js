@@ -192,7 +192,6 @@ function calc_ss2mean_rm(sd, diff, r, base, rho, alpha, power, drop) {
 /* SS2Prop
 Calculates sample size for testing the difference between two independent proportions.
 Inputs:
-- sel: Design type ("cross-sectional" or other).
 - p0: Proportion in group 0.
 - p1: Proportion in group 1.
 - m: Ratio of sample sizes (n0/n1).
@@ -207,7 +206,7 @@ Outputs an object with:
 References:
 1. Machin, D., Campbell, M. J., Tan, S. B., & Tan, S. H. (2009). Sample size tables for clinical studies (3rd ed.). John Wiley & Sons.
 */
-function calc_ss2prop(sel, p0, p1, m, alpha, power, drop) {
+function calc_ss2prop(p0, p1, m, alpha, power, drop) {
     var p_bar = (p0 + p1) / 2;
     var z_alpha = jStat.normal.inv(1 - alpha / 2, 0, 1);
     var z_beta = jStat.normal.inv(power, 0, 1);

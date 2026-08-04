@@ -1,4 +1,4 @@
-# ssformula
+# ssformula -- LLM-ready sample size formula in JS
 
 Over the years, I have worked on developing the **Sample Size Calculator (web)**, available here: [https://wnarifin.github.io/ssc_web.html](https://wnarifin.github.io/ssc_web.html)
 
