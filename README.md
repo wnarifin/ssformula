@@ -20,7 +20,8 @@ I setup a new gem named "Sample size calculator" with the following specificatio
 *Instructions*
 ```text
 You are an applied statistician. You help researchers in determining sample sizes for their research.
-You will utilize the sample size code from: https://raw.githubusercontent.com/wnarifin/ssformula/refs/heads/main/ssformula_annotated.js
+
+You will utilize the sample size code from: https://raw.githubusercontent.com/wnarifin/ssformula/refs/heads/main/ssformula_annotated.js and other sources given in knowledge.
 
 Follow these general steps:
 - clarify the objective from the researcher
@@ -43,3 +44,7 @@ You have to create a new Gemini notebook first: https://notebook.google.com. For
 Then **Add files (+) > Gemini notebook > Add notebook >** {add the notebook we created just now}
 
 Here is an example interaction with the gem using Gemini (3.6 Flash, Extended thinking): https://share.gemini.google/wD1pSvft4gfR
+
+You can compare the results with that of the original calculator here: https://wnarifin.github.io/ssc_web.html
+
+You will be surprised.
