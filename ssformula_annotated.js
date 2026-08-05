@@ -63,7 +63,7 @@ Inputs:
 - diff: Expected difference in means.
 - m: Ratio of sample size (Group 0 to Group 1).
 - alpha: Significance level (e.g., 0.05).
-- power: Statistical power in percentage (e.g., 80 for 80%).
+- power: Statistical power (e.g., 0.8, 0.9).
 - drop: Expected dropout rate in percentage.
 Outputs an object with:
 - n1: Sample size for Group 1.
@@ -93,7 +93,7 @@ Inputs:
 - sd: Standard deviation of the differences.
 - diff: Expected mean difference.
 - alpha: Significance level (e.g., 0.05).
-- power: Statistical power in percentage (e.g., 80 for 80%).
+- power: Statistical power (e.g., 0.8, 0.9).
 - drop: Expected dropout rate in percentage.
 Outputs an object with:
 - n: Required sample size (pairs).
@@ -135,7 +135,7 @@ Inputs:
 - sd: Expected pooled standard deviation.
 - diff: Expected difference in means.
 - alpha: Significance level (e.g., 0.05).
-- power: Statistical power in percentage.
+- power: Statistical power (e.g., 0.8, 0.9).
 - drop: Expected dropout rate in percentage.
 Outputs an object with:
 - n: Sample size per group.
@@ -162,7 +162,7 @@ Inputs:
 - base: 1 if baseline measurement is included, 0 otherwise.
 - rho: Correlation between repetitions.
 - alpha: Significance level.
-- power: Statistical power in percentage.
+- power: Statistical power (e.g., 0.8, 0.9).
 - drop: Dropout rate in percentage.
 Outputs an object with:
 - n: Total sample size.
@@ -196,7 +196,7 @@ Inputs:
 - p1: Proportion in group 1.
 - m: Ratio of sample sizes (n0/n1).
 - alpha: Significance level.
-- power: Statistical power in percentage.
+- power: Statistical power (e.g., 0.8, 0.9).
 - drop: Dropout rate in percentage.
 Outputs an object with:
 - n1, n0: Sample sizes for groups 1 and 0.
@@ -225,7 +225,7 @@ Inputs:
 - p0: Proportion in group 0.
 - p1: Proportion in group 1.
 - alpha: Significance level.
-- power: Statistical power in percentage.
+- power: Statistical power (e.g., 0.8, 0.9).
 - drop: Dropout rate in percentage.
 Outputs an object with:
 - n: Sample size per group.
@@ -250,7 +250,7 @@ Inputs:
 - cronbach0_hx: Null hypothesis Cronbach's alpha.
 - cronbach1_hx: Alternative hypothesis Cronbach's alpha.
 - alpha_hx: Significance level.
-- power_hx: Statistical power in percentage.
+- power_hx: Statistical power (e.g., 0.8, 0.9).
 - item_hx: Number of items in the scale.
 - drop_hx: Expected dropout rate in percentage.
 Outputs an object with:
@@ -354,7 +354,7 @@ Inputs:
 - A: Alternative hypothesis expected AUROC.
 - p: Prevalence (proportion of disease).
 - alpha: Significance level.
-- power: Statistical power in percentage.
+- power: Statistical power (e.g., 0.8, 0.9).
 - drop: Dropout rate in percentage.
 - Decimal: Decimal.js constructor for high precision math.
 Outputs an object with:
@@ -409,7 +409,7 @@ Calculates sample size for testing a correlation coefficient against a null valu
 Inputs:
 - corr: Expected correlation coefficient (r).
 - alpha: Significance level.
-- power: Statistical power in percentage.
+- power: Statistical power (e.g., 0.8, 0.9).
 - drop: Dropout rate in percentage.
 Outputs an object with:
 - n: Required sample size.
@@ -456,7 +456,7 @@ Inputs:
 - icc0: Null hypothesis ICC.
 - icc1: Alternative hypothesis ICC.
 - alpha: Significance level.
-- power: Statistical power in percentage.
+- power: Statistical power (e.g., 0.8, 0.9).
 - rater: Number of raters or replicates per subject.
 - drop: Expected dropout rate in percentage.
 Outputs an object with:
@@ -507,7 +507,7 @@ Inputs:
 - k1: Alternative hypothesis Kappa.
 - p: Prevalence of the trait.
 - alpha: Significance level.
-- power: Statistical power in percentage.
+- power: Statistical power (e.g., 0.8, 0.9).
 - drop: Expected dropout rate in percentage.
 Outputs an object with:
 - n: Required sample size.
@@ -588,7 +588,7 @@ Inputs:
 - p0: Proportion in group 0.
 - p1: Proportion in group 1.
 - alpha: Significance level.
-- power: Statistical power in percentage.
+- power: Statistical power (e.g., 0.8, 0.9).
 - drop: Expected dropout rate in percentage.
 Outputs an object with:
 - n: Required sample size (pairs).
@@ -613,7 +613,7 @@ Calculates sample size for Structural Equation Modeling (SEM) based on Root Mean
 Inputs:
 - rmsea: Desired RMSEA value.
 - alpha: Significance level.
-- power: Statistical power in percentage.
+- power: Statistical power (e.g., 0.8, 0.9).
 - df: Degrees of freedom.
 - drop: Expected dropout rate in percentage.
 - delta: Noncentrality parameter (computed via ncp() function).
@@ -662,7 +662,7 @@ function calc_sssnsp(sn, sp, p, precision, ci, drop) {
 Calculates the non-centrality parameter (NCP) given alpha, power and df for SEM models.
 Inputs:
 - alpha: Significance level.
-- power: Statistical power in percentage.
+- power: Statistical power (e.g., 0.8, 0.9).
 - df: Degrees of freedom.
 Outputs:
 - delta: Computed non-centrality parameter.
