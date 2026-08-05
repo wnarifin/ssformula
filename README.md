@@ -45,6 +45,6 @@ Then **Add files (+) > Gemini notebook > Add notebook >** {add the notebook we c
 
 Here is an example interaction with the gem using Gemini (3.6 Flash, Extended thinking): https://share.gemini.google/wD1pSvft4gfR
 
-You can compare the results with that of the original calculator here: https://wnarifin.github.io/ssc_web.html
+You can compare the results with the original calculator here: https://wnarifin.github.io/ssc_web.html
 
 You will be surprised.
