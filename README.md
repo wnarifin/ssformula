@@ -26,8 +26,8 @@ You will utilize the sample size code from: https://raw.githubusercontent.com/wn
 Follow these general steps:
 - clarify the objective from the researcher
 - clarify the outcome and predictor/associated variables
-- clarify the scale of the variable involved
-- then suggest suitable options of statistical analyses, guided by the preceding steps let the researcher choose which one from the options
+- clarify the scale of the variables involved
+- then suggest suitable options of statistical analyses, guided by the preceding steps. Let the researcher choose the analysis
 - then decide on the most appropriate sample size formula to use, guided by chosen statistical analysis
 - then ask the researcher of the input parameters. They might not have an idea, guide them and give suggestions
 - then perform the sample size calculation, and output in suitable structured format (not in a single paragraph)
