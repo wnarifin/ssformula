@@ -17,7 +17,7 @@ Happy prompting!
 
 I setup a new gem named "Sample size calculator" with the following specifications:
 
-*Instructions*
+## Instructions
 ```text
 You are an applied statistician. You help researchers in determining sample sizes for their research.
 
@@ -33,7 +33,7 @@ Follow these general steps:
 - then perform the sample size calculation, and output in suitable structured format (not in a single paragraph)
 ```
 
-*Knowledge*
+## Knowledge
 
 You have to create a new Gemini notebook first: https://notebook.google.com. For the sources, add the following sources:
 
@@ -48,3 +48,81 @@ Here is an example interaction with the gem using Gemini (3.6 Flash, Extended th
 You can compare the results with the original calculator here: https://wnarifin.github.io/ssc_web.html
 
 You will be surprised.
+
+# Using SKILL.md with an Agentic AI Coding Assistant
+
+`SKILL.md` is designed for use with agentic AI coding assistants that support
+the skill system (e.g. [Antigravity](https://antigravity.dev)). When loaded,
+it instructs the agent to act as a statistician, guide researchers through a
+structured consultation, and invoke the correct formula from
+`ssformula_annotated.js` automatically.
+
+## What SKILL.md contains
+
+- **YAML frontmatter** — skill name, version, tool bindings (all 26 functions
+  in `ssformula_annotated.js`), and trigger tags.
+- **Function Reference** — parameter tables and call signatures for every
+  sample size formula.
+- **8-step Workflow** — a consultation-first approach: clarify objective →
+  clarify variables → clarify scales → suggest analyses → collect parameters
+  → execute → validate → report.
+- **Constraints & Guardrails** — what the agent must and must not do, and how
+  to handle edge cases.
+- **Output Format** — a structured Markdown template with a worked example.
+- **References** — pointers to the PDF references in the `references/` folder.
+
+## Setup
+
+1. **Copy the skill files** into your agent's skills directory. The required
+   files are:
+
+   ```
+   ssformula_annotated.js   ← the formula library
+   SKILL.md                 ← the skill instructions
+   references/              ← optional; PDF references for methodological detail
+   ```
+
+2. **Point the agent to the skill.** For Antigravity, place `SKILL.md` (and
+   optionally `ssformula_annotated.js`) inside a named folder under your
+   configured skills path, for example:
+
+   ```
+   ~/.gemini/config/skills/sample-size-calculator/SKILL.md
+   ~/.gemini/config/skills/sample-size-calculator/ssformula_annotated.js
+   ```
+
+   The agent discovers and reads `SKILL.md` automatically when it detects a
+   relevant request.
+
+3. **Alternatively**, reference `ssformula_annotated.js` directly from its
+   raw GitHub URL so the agent can fetch it at runtime:
+
+   ```
+   https://raw.githubusercontent.com/wnarifin/ssformula/refs/heads/main/ssformula_annotated.js
+   ```
+
+## Triggering the skill
+
+The skill activates whenever the researcher asks about:
+
+- sample size determination or calculation
+- power analysis or statistical power
+- dropout or attrition adjustment
+- any of the supported designs (means, proportions, ICC, Kappa, AUROC,
+  logistic regression, SEM/RMSEA, etc.)
+
+The agent will then follow the 8-step consultation workflow defined in
+`SKILL.md` — asking targeted questions, suggesting analysis options, and
+performing the calculation using the appropriate formula function.
+
+## Example prompt
+
+```
+I am planning a reliability study using ICC. I have two raters. Can you help
+me determine the sample size?
+```
+
+The agent will clarify the study objective, variables, and measurement scale;
+suggest ICC estimation or hypothesis testing; ask for ICC, precision or null
+hypothesis values, number of raters, confidence level, and dropout rate; then
+invoke `calc_est_ssicc` or `calc_hx_ssicc` and return a structured result.
