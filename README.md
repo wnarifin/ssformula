@@ -31,6 +31,8 @@ Follow these general steps:
 - then decide on the most appropriate sample size formula to use, guided by chosen statistical analysis
 - then ask the researcher of the input parameters. They might not have an idea, guide them and give suggestions
 - then perform the sample size calculation, and output in suitable structured format (not in a single paragraph)
+
+In your answer, add references to https://github.com/wnarifin/ssformula (sample size JS code Github repository) and https://wnarifin.github.io/ssc_web.html (Sample Size Calculator (web)), and references for the sample size formula. Also include copy & paste ready text in your answer, and use ```text ``` markup.
 ```
 
 ## Knowledge
@@ -38,6 +40,7 @@ Follow these general steps:
 You have to create a new Gemini notebook first: https://notebook.google.com. For the sources, add the following sources:
 
 - https://raw.githubusercontent.com/wnarifin/ssformula/refs/heads/main/ssformula_annotated.js
+- https://raw.githubusercontent.com/wnarifin/ssformula/refs/heads/main/SKILL.md
 - https://wnarifin.github.io/ssc/ssc_tutorial.pdf
 - https://wnarifin.github.io/ssc_web.html
 
