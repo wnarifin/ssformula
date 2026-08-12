@@ -76,33 +76,37 @@ structured consultation, and invoke the correct formula from
 
 ## Setup
 
-1. **Copy the skill files** into your agent's skills directory. The required
-   files are:
+1. **Create the skill directory.** Set up a named folder under your preferred skills location (see [Antigravity Documentation](https://antigravity.google/docs/skills)):
+* **Global level (all workspaces):**
+```bash
+~/.gemini/config/skills/sample-size-calculator/
 
-   ```
-   ssformula_annotated.js   ← the formula library
-   SKILL.md                 ← the skill instructions
-   references/              ← optional; PDF references for methodological detail
-   ```
+```
 
-2. **Point the agent to the skill.** For Antigravity, place `SKILL.md` (and
-   optionally `ssformula_annotated.js`) inside a named folder under your
-   configured skills path, for example:
 
-   ```
-   ~/.gemini/config/skills/sample-size-calculator/SKILL.md
-   ~/.gemini/config/skills/sample-size-calculator/ssformula_annotated.js
-   ```
+* **Project level (workspace):**
+```bash
+.agents/skills/sample-size-calculator/
 
-   The agent discovers and reads `SKILL.md` automatically when it detects a
-   relevant request.
+```
 
-3. **Alternatively**, reference `ssformula_annotated.js` directly from its
-   raw GitHub URL so the agent can fetch it at runtime:
 
-   ```
-   https://raw.githubusercontent.com/wnarifin/ssformula/refs/heads/main/ssformula_annotated.js
-   ```
+*(Note: `.agent/skills/` is also supported for backward compatibility.)*
+
+
+2. **Copy the skill files.** Place the required files into the newly created folder:
+* `SKILL.md` (the skill instructions)
+* `ssformula_annotated.js` (the formula library)
+* `references/` (optional; PDF references for methodological detail)
+
+
+The agent discovers and reads `SKILL.md` automatically whenever a relevant request is detected.
+
+3. **Alternatively**, reference `ssformula_annotated.js` directly from its raw GitHub URL so the agent can fetch it at runtime:
+```
+https://raw.githubusercontent.com/wnarifin/ssformula/refs/heads/main/ssformula_annotated.js
+
+```
 
 ## Triggering the skill
 
