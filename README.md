@@ -80,14 +80,12 @@ structured consultation, and invoke the correct formula from
 * **Global level (all workspaces):**
 ```bash
 ~/.gemini/config/skills/sample-size-calculator/
-
 ```
 
 
 * **Project level (workspace):**
 ```bash
 .agents/skills/sample-size-calculator/
-
 ```
 
 
@@ -105,7 +103,6 @@ The agent discovers and reads `SKILL.md` automatically whenever a relevant reque
 3. **Alternatively**, reference `ssformula_annotated.js` directly from its raw GitHub URL so the agent can fetch it at runtime:
 ```
 https://raw.githubusercontent.com/wnarifin/ssformula/refs/heads/main/ssformula_annotated.js
-
 ```
 
 ## Triggering the skill
