@@ -114,6 +114,13 @@ for `ci` (confidence level) must be supplied as a **proportion** (e.g., `0.95`
 for 95 %). Parameters for `drop` are supplied as a **percentage** (e.g., `10`
 for 10 %).
 
+## Dependencies
+
+- <https://cdn.jsdelivr.net/npm/jstat@latest/dist/jstat.min.js> for most statistical distribution functions.
+- <https://cdn.jsdelivr.net/npm/decimal.js-light@2.5.1/decimal.min.js> (Decimal for high precision math).
+
+Make sure to load the libraries when the functions require them.
+
 ---
 
 ### 1. One-Mean Estimation — `calc_ss1mean`
@@ -271,22 +278,46 @@ baseline measurement.
 ### 7. Two Independent Proportions — `calc_ss2prop`
 
 Calculates sample size for testing the difference between two independent
-proportions, allowing unequal group sizes.
+proportions in epidemiological studies, allowing unequal group sizes.
 
 **Formula reference:** Machin et al. (2009).
 
-| Parameter | Type | Description |
-|---|---|---|
-| `p0` | number | Proportion in Group 0 (control/reference) |
-| `p1` | number | Proportion in Group 1 (treatment/comparator) |
-| `m` | number | Ratio n0/n1 (1 for equal groups) |
-| `alpha` | number | Significance level |
-| `power` | number | Desired power |
-| `drop` | number | Expected dropout rate (%) |
+The meaning of `p0`, `p1`, and especially `m` depends on the **epidemiological
+study design**. Establish the design before collecting the parameters:
+
+| Design | Group 0 (reference)            | Group 1 (comparator)    | `p0`                                                 | `p1`                                             | `m` as entered by the researcher                                                              |
+|---|--------------------------------|-------------------------|------------------------------------------------------|--------------------------------------------------|-----------------------------------------------------------------------------------------------|
+| **Case-control** | Controls                       | Cases                   | Proportion of controls with the exposure             | Proportion of cases with the exposure            | n0/n1 ratio (controls : cases), used directly                                                 |
+| **Cohort** | Unexposed                      | Exposed                 | Proportion of unexposed with the outcome             | Proportion of exposed with the outcome           | n0/n1 ratio (unexposed : exposed), used directly                                              |
+| **Cross-sectional** | Non-diseased (without outcome) | Diseased (with outcome) | Proportion in non-diseased with the factor/attribute | Proportion in diseased with the factor/attribute | m calculated from prevalence of the disease (outcome) (p) as described below, used indirectly |
+
+> **Cross-sectional designs:** The value entered for `m` is given as:
+>
+> ```
+> m = (1 - p) / p
+> ```
+>
+> Example: an expected disesae prevalence of 0.20 gives
+> `m = (1 - 0.20) / 0.20 = 4`, i.e., 4 non-diseased per diseased subject.
+>
+> **Case-control and cohort designs:** `m` is already the Group 0 : Group 1
+> allocation ratio chosen by the researcher (e.g., `1` for a 1:1 allocation)
+> and is passed to the function unchanged.
+
+| Parameter | Type | Description                                                                                                                                                                                                                                                                                          |
+|---|---|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `p0` | number | Proportion in Group 0 (reference group; see design table above)                                                                                                                                                                                                                                      |
+| `p1` | number | Proportion in Group 1 (comparator group; see design table above)                                                                                                                                                                                                                                     |
+| `m` | number | Group 0 : Group 1 sample-size ratio `n0/n1` (`1` for equal groups). For **cross-sectional** designs, compute as `m = (1 - p) / p`, where `p` is the prevalence of disease supplied by the researcher. For **case-control** and **cohort** designs, pass the researcher's `m = n0/n1` ratio directly. |
+| `alpha` | number | Significance level                                                                                                                                                                                                                                                                                   |
+| `power` | number | Desired power                                                                                                                                                                                                                                                                                        |
+| `drop` | number | Expected dropout rate (%)                                                                                                                                                                                                                                                                            |
 
 **Call:** `calc_ss2prop(p0, p1, m, alpha, power, drop)`
 
 **Returns:** `{ n1, n1_drop, n0, n0_drop, n, n_drop }`
+- `n1` / `n0` — sizes for Group 1 (comparator) and Group 0 (reference)
+- `n` — total sample size
 
 ---
 
@@ -381,8 +412,7 @@ Calculates sample size to test whether the AUROC differs from a null value.
 
 **Formula reference:** Zhou, Obuchowski & McClish (2011), Equations 6.6 & 6.8.
 
-> **Dependency:** Requires `Decimal` (Decimal.js) for high-precision arithmetic.
-> Pass the `Decimal` constructor as the final argument.
+> **Dependency:** Requires `Decimal` (decimal.min.js in Dependencies above).
 
 | Parameter | Type | Description |
 |---|---|---|
@@ -392,9 +422,8 @@ Calculates sample size to test whether the AUROC differs from a null value.
 | `alpha` | number | Significance level |
 | `power` | number | Desired power |
 | `drop` | number | Expected dropout rate (%) |
-| `Decimal` | object | Decimal.js constructor |
 
-**Call:** `calc_hx_ssauroc(A0, A, p, alpha, power, drop, Decimal)`
+**Call:** `calc_hx_ssauroc(A0, A, p, alpha, power, drop)`
 
 **Returns:** `{ n, n_drop }`
 
@@ -406,7 +435,7 @@ Calculates sample size to estimate the AUROC with a desired precision.
 
 **Formula reference:** Zhou, Obuchowski & McClish (2011), Equations 6.2 & 6.6.
 
-> **Dependency:** Requires `Decimal` (Decimal.js). Pass the constructor as the final argument.
+> **Dependency:** Requires `Decimal` (decimal.min.js in Dependencies above).
 
 | Parameter | Type | Description |
 |---|---|---|
@@ -415,9 +444,8 @@ Calculates sample size to estimate the AUROC with a desired precision.
 | `precision` | number | Desired margin of error |
 | `ci` | number | Confidence level as a proportion |
 | `drop` | number | Expected dropout rate (%) |
-| `Decimal` | object | Decimal.js constructor |
 
-**Call:** `calc_est_ssauroc(A, p, precision, ci, drop, Decimal)`
+**Call:** `calc_est_ssauroc(A, p, precision, ci, drop)`
 
 **Returns:** `{ n, n_drop }`
 
@@ -747,7 +775,7 @@ consultation phase; do not proceed to calculation until they are complete.
 | `alpha` / significance level | `0.05` | Standard two-tailed test |
 | `power` | `0.80` | Widely accepted minimum |
 | `ci` | `0.95` | Standard 95% confidence interval |
-| `m` (group ratio) | `1` | Equal group sizes |
+| `m` (group ratio) | `1` (case-control/cohort); Group 1 proportion (cross-sectional, e.g. `0.5`) | Equal group sizes; cross-sectional `m` must be converted to an n0/n1 ratio as described in Section 7 |
 | `drop` | `0` | No dropout adjustment unless specified |
 | `base` (repeated measures) | `0` | No baseline measurement unless specified |
 
@@ -955,3 +983,7 @@ may be consulted for methodological background:
   — covers RMSEA-based SEM sample size methods.
 - `ssc_tutorial.pdf` — practical tutorial accompanying the online calculator at
   https://wnarifin.github.io/ssc_web.html
+
+## Implementation
+
+The functions are implemented at <https://wnarifin.github.io/ssc_web.html>. You may refer to the website for additional contexts (menu layout, labels etc.).
