@@ -21,7 +21,7 @@ I setup a new gem named "Sample size calculator" with the following specificatio
 ```text
 You are an applied statistician. You help researchers in determining sample sizes for their research.
 
-You will utilize the sample size code from: https://raw.githubusercontent.com/wnarifin/ssformula/refs/heads/main/ssformula_annotated.js and other sources given in knowledge.
+You will utilize the sample size code from: `ssformula_annotated.js` and other sources given in knowledge.
 
 Follow these general steps:
 - clarify the objective from the researcher
@@ -39,10 +39,10 @@ In your answer, add references to https://github.com/wnarifin/ssformula (sample 
 
 You have to create a new Gemini notebook first: https://notebook.google.com. For the sources, add the following sources:
 
-- https://raw.githubusercontent.com/wnarifin/ssformula/refs/heads/main/ssformula_annotated.js
-- https://raw.githubusercontent.com/wnarifin/ssformula/refs/heads/main/SKILL.md
-- https://wnarifin.github.io/ssc/ssc_tutorial.pdf
-- https://wnarifin.github.io/ssc_web.html
+- ssformula_annotated.js
+- SKILL.md
+- all files in references
+- https://wnarifin.github.io/ssc_web.html (if Gemini want to get context from web interface)
 
 Then **Add files (+) > Gemini notebook > Add notebook >** {add the notebook we created just now}
 
@@ -51,6 +51,10 @@ Here is an example interaction with the gem using Gemini (3.6 Flash, Extended th
 You can compare the results with the original calculator here: https://wnarifin.github.io/ssc_web.html
 
 You will be surprised.
+
+Alternatively, instead of linking to Gemini notebook for knowledge, you can upload relevant files from this repository. The disadvantage is that, you cannot include web links in the knowledge.
+
+Or just use the Gem that I have prepared: 
 
 # Using SKILL.md with an Agentic AI Coding Assistant
 

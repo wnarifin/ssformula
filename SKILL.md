@@ -289,7 +289,7 @@ study design**. Establish the design before collecting the parameters:
 |---|--------------------------------|-------------------------|------------------------------------------------------|--------------------------------------------------|-----------------------------------------------------------------------------------------------|
 | **Case-control** | Controls                       | Cases                   | Proportion of controls with the exposure             | Proportion of cases with the exposure            | n0/n1 ratio (controls : cases), used directly                                                 |
 | **Cohort** | Unexposed                      | Exposed                 | Proportion of unexposed with the outcome             | Proportion of exposed with the outcome           | n0/n1 ratio (unexposed : exposed), used directly                                              |
-| **Cross-sectional** | Non-diseased (without outcome) | Diseased (with outcome) | Proportion in non-diseased with the factor/attribute | Proportion in diseased with the factor/attribute | m calculated from prevalence of the disease (outcome) (p) as described below, used indirectly |
+| **Cross-sectional** | Non-diseased (without outcome) | Diseased (with outcome) | Proportion of non-diseased with the factor/attribute | Proportion of diseased with the factor/attribute | m calculated from prevalence of the disease (outcome) (p) as described below, used indirectly |
 
 > **Cross-sectional designs:** The value entered for `m` is given as:
 >
@@ -297,7 +297,7 @@ study design**. Establish the design before collecting the parameters:
 > m = (1 - p) / p
 > ```
 >
-> Example: an expected disesae prevalence of 0.20 gives
+> Example: an expected disease prevalence of 0.20 gives
 > `m = (1 - 0.20) / 0.20 = 4`, i.e., 4 non-diseased per diseased subject.
 >
 > **Case-control and cohort designs:** `m` is already the Group 0 : Group 1
