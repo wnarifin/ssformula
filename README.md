@@ -54,7 +54,7 @@ You will be surprised.
 
 Alternatively, instead of linking to Gemini notebook for knowledge, you can upload relevant files from this repository. The disadvantage is that, you cannot include web links in the knowledge.
 
-Or just use the Gem that I have prepared: 
+Or just use the Gem that I have prepared: [Sample size calculator](https://gemini.google.com/gem/1e8DSpyF3vKFYfMwjXlzn6Ht6y99WOtEK?usp=sharing).
 
 # Using SKILL.md with an Agentic AI Coding Assistant
 
